@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,74 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        print("App has started")
+        
+        let moc = persistentContainer.viewContext
+//        let notebookObject = Notebook(context: moc)
+//        notebookObject.title = "Understanding the universe"
+//        notebookObject.createdAt = Date() as Date?
+//
+//        for index in 1 ... 10 {
+//            let noteObject = Note(context: moc)
+//            noteObject.content = "Universe \(index)"
+//            noteObject.title = "Number \(index) universe"
+//            noteObject.createdAt = Date()
+//
+//            notebookObject.addToNote(noteObject)
+//        }
+//
+//        saveContext()
+
+
+        let notebookRequest: NSFetchRequest<Notebook> = Notebook.fetchRequest()
+        notebookRequest.returnsObjectsAsFaults = false
+        
+        let sortDescriptor = NSSortDescriptor(key: "title", ascending: false)
+        notebookRequest.sortDescriptors = [sortDescriptor]
+        
+//        let keyPath = "title"
+//        let searchString = "with"
+//
+//        let notebookPredicate = NSPredicate(format: "%K CONTAINS %@", keyPath, searchString)
+//        notebookRequest.predicate = notebookPredicate
+        
+        let keyPath = "note.content"
+        let searchString = "stuff 11"
+
+        let complexPredicate = NSPredicate(format: "ANY %K CONTAINS %@", keyPath, searchString)
+        notebookRequest.predicate = complexPredicate
+        
+        var notebookArray = [Notebook]()
+        var notebookCount = 0
+        
+        do {
+            notebookArray = try moc.fetch(notebookRequest)
+            notebookCount = try moc.count(for: notebookRequest)
+            print("The number of rows in this table is \(notebookCount)")
+        } catch {
+            print(error.localizedDescription)
+        }
+        
+        
+        for notebook in notebookArray{
+            print("This is the notebook with title \(notebook.title!) and it was created at \(notebook.createdAt!)")
+            displayNotes(notebook: notebook)
+        }
+        
+
         return true
+    }
+    
+    func displayNotes(notebook : Notebook){
+        if let notes = notebook.note as? Set<Note>{
+            let sortedNotesArray = notes.sorted { (noteA: Note, noteB: Note) -> Bool in
+                return noteA.createdAt!.compare(noteB.createdAt!) == ComparisonResult.orderedAscending
+            }
+            for note  in sortedNotesArray{
+                print(note.title!)
+            }
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -39,8 +107,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        saveContext()
     }
+    
+    
+    //MARK: Core Data Stack
+    
+    lazy var persistentContainer : NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "FirstStepsDataModel")
+        container.loadPersistentStores(completionHandler: { (storeDescription:NSPersistentStoreDescription, error : Error?) in
+            if let error = error as NSError?{
+                print(error.localizedDescription)
+                
+            }
+        })
+        return container
+        
+        }()
 
-
+    func saveContext(){
+        let context = persistentContainer.viewContext
+        if context.hasChanges{
+            do{
+                try  context.save()
+            }catch{
+                print(error.localizedDescription)
+            }
+           
+        }
+    }
 }
 

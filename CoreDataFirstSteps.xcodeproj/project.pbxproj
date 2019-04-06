@@ -7,14 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0279DAA5224C1EA0001E9479 /* NotebooksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0279DAA4224C1EA0001E9479 /* NotebooksViewController.swift */; };
 		02955DA02244020A00CACD2D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02955D9F2244020A00CACD2D /* AppDelegate.swift */; };
 		02955DA22244020A00CACD2D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02955DA12244020A00CACD2D /* ViewController.swift */; };
 		02955DA52244020A00CACD2D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02955DA32244020A00CACD2D /* Main.storyboard */; };
 		02955DA72244020D00CACD2D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 02955DA62244020D00CACD2D /* Assets.xcassets */; };
 		02955DAA2244020D00CACD2D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 02955DA82244020D00CACD2D /* LaunchScreen.storyboard */; };
+		02955DB32244024A00CACD2D /* FirstStepsDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 02955DB12244024A00CACD2D /* FirstStepsDataModel.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0279DAA4224C1EA0001E9479 /* NotebooksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotebooksViewController.swift; sourceTree = "<group>"; };
 		02955D9C2244020A00CACD2D /* CoreDataFirstSteps.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoreDataFirstSteps.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02955D9F2244020A00CACD2D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02955DA12244020A00CACD2D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +25,7 @@
 		02955DA62244020D00CACD2D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		02955DA92244020D00CACD2D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		02955DAB2244020D00CACD2D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		02955DB22244024A00CACD2D /* FirstStepsDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FirstStepsDataModel.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,9 +61,11 @@
 				02955D9F2244020A00CACD2D /* AppDelegate.swift */,
 				02955DA12244020A00CACD2D /* ViewController.swift */,
 				02955DA32244020A00CACD2D /* Main.storyboard */,
+				0279DAA4224C1EA0001E9479 /* NotebooksViewController.swift */,
 				02955DA62244020D00CACD2D /* Assets.xcassets */,
 				02955DA82244020D00CACD2D /* LaunchScreen.storyboard */,
 				02955DAB2244020D00CACD2D /* Info.plist */,
+				02955DB12244024A00CACD2D /* FirstStepsDataModel.xcdatamodeld */,
 			);
 			path = CoreDataFirstSteps;
 			sourceTree = "<group>";
@@ -135,8 +141,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				02955DB32244024A00CACD2D /* FirstStepsDataModel.xcdatamodeld in Sources */,
 				02955DA22244020A00CACD2D /* ViewController.swift in Sources */,
 				02955DA02244020A00CACD2D /* AppDelegate.swift in Sources */,
+				0279DAA5224C1EA0001E9479 /* NotebooksViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,6 +342,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		02955DB12244024A00CACD2D /* FirstStepsDataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				02955DB22244024A00CACD2D /* FirstStepsDataModel.xcdatamodel */,
+			);
+			currentVersion = 02955DB22244024A00CACD2D /* FirstStepsDataModel.xcdatamodel */;
+			path = FirstStepsDataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 02955D942244020A00CACD2D /* Project object */;
 }
